@@ -1,5 +1,5 @@
 .blue-bg {
-  background-color: #336699
+  background-color: #336699;
 }
 
 .header-text {
@@ -16,4 +16,20 @@
 
 .light-blue-bg {
   background-color: #9fbfdf;
+}
+
+.blue-text {
+  color: #336699;
+}
+
+.underline-text {
+  border-bottom: 1px solid #336699;
+}
+
+.margin-1-b {
+  margin-bottom: 10px;
+}
+
+.value-text {
+  font-size: 3.0rem;
 }
