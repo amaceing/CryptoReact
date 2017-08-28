@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import { CryptoCurrency } from './crypto-currency.jsx'
 import { Header } from './header.jsx'
-import logo from './logo.svg';
+import { CryptoCurrency } from './crypto-currency.jsx'
 import './App.css';
 
 class App extends Component {
