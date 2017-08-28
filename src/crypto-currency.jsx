@@ -5,35 +5,44 @@ export class CryptoCurrency extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      value: 0.00
+      price: 0.00
     }
   }
 
   componentDidMount() {
-    this.loadCurrencyValue();
+    this.loadCurrencyPrice();
   }
 
-  loadCurrencyValue() {
+  loadCurrencyPrice() {
     const ticker = this.props.currency;
     const apiURL = "https://api.coinmarketcap.com/v1/ticker/"+ ticker + "/";
     $.ajax(apiURL).then((data) => {
-      const value = data[0].price_usd;
-      console.log(value);
-      this.setState({value: value})
+      const price = data[0].price_usd;
+      this.setState({price: price});
     });
   }
 
-  formatValue = (value) => {
-    return "$" + parseFloat(value).toFixed(2);
+  formatAmount = (amount) => {
+    return "$" + parseFloat(amount).toFixed(2);
+  }
+
+  amountOwnedChanged = (event) => {
+    const valueOfAmountOwned = this.state.price * event.target.value;
+    const formattedValue = this.formatAmount(valueOfAmountOwned);
+    console.log(formattedValue);
+    this.setState({value: formattedValue});
   }
 
   render() {
     return (
-      <div className="row text-center">
-        <h1 className="blue-text underline-text">{this.props.currency}</h1>
-        <p className="blue-text">Price</p>
-        <p className="blue-text value-text">{this.formatValue(this.state.value)}</p>
-      </div>
+      <div className="row text-center blue-text">
+        <h1 className="underline-text">{this.props.currency}</h1>
+        <p>Price</p>
+        <p className="value-text">{this.formatAmount(this.state.price)}</p>
+        <input className="text-right" type="number" onChange={this.amountOwnedChanged} placeholder="Amount Owned"/>
+        <p>Value</p>
+        <p className="value-text">{this.state.value}</p>
+    </div>
     );
   }
 }
